@@ -1,15 +1,16 @@
-// =====================================================
+// ==========================================
 // Technical Consulting Vierthaler
-// script.js - Version 1.0
-// =====================================================
+// script.js v2.0
+// ==========================================
 
-// Smooth scrolling for navigation links
+// Smooth Scrolling
 document.querySelectorAll('a[href^="#"]').forEach(link => {
-  link.addEventListener("click", event => {
+  link.addEventListener("click", e => {
     const target = document.querySelector(link.getAttribute("href"));
+
     if (!target) return;
 
-    event.preventDefault();
+    e.preventDefault();
 
     target.scrollIntoView({
       behavior: "smooth",
@@ -18,57 +19,89 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
   });
 });
 
-// Navbar background changes while scrolling
+// Navigation beim Scrollen
 const navbar = document.querySelector(".navbar");
 
 function updateNavbar() {
+
   if (!navbar) return;
 
+  const container = navbar.querySelector(".container");
+
   if (window.scrollY > 40) {
-    navbar.style.transition = "all .3s ease";
-    navbar.style.transform = "translateY(-6px)";
+
+    navbar.style.top = "10px";
+
+    if (container) {
+      container.style.background = "rgba(8,12,20,.80)";
+      container.style.boxShadow = "0 20px 45px rgba(0,0,0,.45)";
+    }
+
   } else {
-    navbar.style.transform = "translateY(0)";
+
+    navbar.style.top = "18px";
+
+    if (container) {
+      container.style.background = "rgba(8,12,20,.55)";
+      container.style.boxShadow = "";
+    }
   }
 }
 
 window.addEventListener("scroll", updateNavbar);
 updateNavbar();
 
-// Fade-in animation using IntersectionObserver
+
+// Fade-In Animation
 const observer = new IntersectionObserver((entries) => {
+
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.animate(
-        [
-          { opacity: 0, transform: "translateY(30px)" },
-          { opacity: 1, transform: "translateY(0)" }
-        ],
+
+    if (!entry.isIntersecting) return;
+
+    entry.target.animate(
+      [
         {
-          duration: 700,
-          easing: "ease-out",
-          fill: "forwards"
+          opacity: 0,
+          transform: "translateY(35px)"
+        },
+        {
+          opacity: 1,
+          transform: "translateY(0)"
         }
-      );
+      ],
+      {
+        duration: 650,
+        easing: "ease-out",
+        fill: "forwards"
+      }
+    );
 
-      observer.unobserve(entry.target);
-    }
+    observer.unobserve(entry.target);
+
   });
-}, {
-  threshold: 0.15
+
+},{
+  threshold:0.15
 });
 
-document.querySelectorAll("section").forEach(section => {
-  observer.observe(section);
+document.querySelectorAll(".service-card, section").forEach(el=>{
+  observer.observe(el);
 });
 
-// Placeholder for future language switch
-const langButton = document.querySelector(".lang");
 
-if (langButton) {
-  langButton.addEventListener("click", () => {
-    alert("Die Sprachumschaltung (DE | EN) folgt in einer späteren Version.");
-  });
-}
+// Hero Hintergrund leicht bewegen
+const hero = document.querySelector(".hero-bg");
 
-console.log("TC-V Website v1.0 geladen.");
+window.addEventListener("mousemove", e=>{
+
+  if(!hero) return;
+
+  const x=(e.clientX/window.innerWidth-0.5)*20;
+  const y=(e.clientY/window.innerHeight-0.5)*20;
+
+  hero.style.transform=`translate(${x}px, ${y}px)`;
+
+});
+
+console.log("TC-V Website Version 2.0 geladen");
