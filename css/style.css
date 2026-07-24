@@ -1772,3 +1772,41 @@ a:focus{
 /* ==========================================================
    ENDE
 ========================================================== */
+/* ==========================================================
+   FORM STATUS MELDUNGEN
+========================================================== */
+
+#form-message{
+    margin-bottom:30px;
+}
+
+#form-message .alert{
+
+    border-radius:18px;
+    padding:20px 24px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    color:#ffffff;
+
+    backdrop-filter:blur(15px);
+
+    font-weight:600;
+
+}
+
+
+#form-message .alert-success{
+
+    border-color:rgba(65,214,124,.35);
+
+}
+
+
+#form-message .alert-danger{
+
+    border-color:rgba(255,80,80,.35);
+
+}
