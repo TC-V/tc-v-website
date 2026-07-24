@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300">
+<title>TC-V Technical Consulting Vierthaler Blue</title>
+
+<rect width="900" height="300" fill="none"/>
+
+<g fill="#2b7cff">
+<path d="M80 70h210v45h-80v125h-50V115H80z"/>
+<path d="M330 70h210v45H380v80h160v45H330z"/>
+<path d="M565 70h55l70 120 70-120h55L690 250h-50z"/>
+</g>
+
+<text x="450" y="285" text-anchor="middle"
+font-family="Arial, Helvetica, sans-serif"
+font-size="34"
+letter-spacing="8"
+fill="#2b7cff">TECHNICAL CONSULTING</text>
+
+<line x1="170" y1="295" x2="300" y2="295" stroke="#0b1628" stroke-width="3"/>
+<line x1="600" y1="295" x2="730" y2="295" stroke="#0b1628" stroke-width="3"/>
+
+</svg>
