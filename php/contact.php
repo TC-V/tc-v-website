@@ -11,6 +11,11 @@ $email = trim($_POST["email"] ?? "");
 $phone = trim($_POST["phone"] ?? "");
 $message = trim($_POST["message"] ?? "");
 $subject_form = trim($_POST["subject"] ?? "");
+$name = htmlspecialchars($name, ENT_QUOTES, 'UTF-8');
+$email = htmlspecialchars($email, ENT_QUOTES, 'UTF-8');
+$phone = htmlspecialchars($phone, ENT_QUOTES, 'UTF-8');
+$message = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
+$subject_form = htmlspecialchars($subject_form, ENT_QUOTES, 'UTF-8');
 
 
 
