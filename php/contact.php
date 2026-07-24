@@ -50,7 +50,8 @@ $message;
 
 $headers =
 "From: Website Kontaktformular <noreply@tc-v.de>\r\n" .
-"Reply-To: " . $email . "\r\n" .
+"Reply-To: ".$email."\r\n" .
+"MIME-Version: 1.0\r\n" .
 "Content-Type: text/plain; charset=UTF-8\r\n";
 
 
