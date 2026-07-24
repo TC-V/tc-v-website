@@ -1,38 +1,59 @@
 <?php
+
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     header("Location: ../index.html");
     exit;
 }
 
-$name    = trim($_POST["name"] ?? "");
-$email   = trim($_POST["email"] ?? "");
-$subject = trim($_POST["subject"] ?? "Kontaktanfrage über tc-v.de");
+
+$name = trim($_POST["name"] ?? "");
+$email = trim($_POST["email"] ?? "");
+$phone = trim($_POST["phone"] ?? "");
 $message = trim($_POST["message"] ?? "");
 
-if ($name === "" || $email === "" || $message === "") {
-    die("Bitte alle Pflichtfelder ausfüllen.");
+
+if (
+    empty($name) ||
+    empty($email) ||
+    empty($message) ||
+    !filter_var($email, FILTER_VALIDATE_EMAIL)
+) {
+
+    header("Location: ../index.html?status=error#kontakt");
+    exit;
+
 }
 
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    die("Ungültige E-Mail-Adresse.");
-}
 
 $to = "philipp.vierthaler@tc-v.de";
 
-$mailSubject = "TC-V Kontaktformular: " . $subject;
+$subject = "Neue Anfrage über tc-v.de";
 
-$mailBody =
-"Name: {$name}\n" .
-"E-Mail: {$email}\n\n" .
-"Nachricht:\n{$message}";
 
-$headers = [];
-$headers[] = "From: TC-V Website <no-reply@tc-v.de>";
-$headers[] = "Reply-To: {$email}";
-$headers[] = "Content-Type: text/plain; charset=UTF-8";
+$email_content =
+"Neue Kontaktanfrage\n\n" .
+"Name: " . $name . "\n" .
+"E-Mail: " . $email . "\n" .
+"Telefon: " . $phone . "\n\n" .
+"Nachricht:\n" .
+$message;
 
-mail($to, $mailSubject, $mailBody, implode("\r\n", $headers));
 
-header("Location: ../index.html?status=success");
+$headers =
+"From: Website Kontaktformular <noreply@tc-v.de>\r\n" .
+"Reply-To: " . $email . "\r\n" .
+"Content-Type: text/plain; charset=UTF-8\r\n";
+
+
+mail(
+    $to,
+    $subject,
+    $email_content,
+    $headers
+);
+
+
+header("Location: ../index.html?status=success#kontakt");
 exit;
+
 ?>
