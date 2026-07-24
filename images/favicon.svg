@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+<title>TC-V Favicon</title>
+<rect width="300" height="300" rx="70" fill="#0b1628"/>
+<g fill="#ffffff">
+<path d="M55 75h100v35h-32v95H88v-95H55z"/>
+<path d="M165 75h80v35h-45v95h-35z"/>
+</g>
+<path d="M170 210h70" stroke="#2b7cff" stroke-width="10" stroke-linecap="round"/>
+</svg>
