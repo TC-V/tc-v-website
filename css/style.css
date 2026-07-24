@@ -1868,3 +1868,24 @@ a:focus{
     border-color:rgba(255,80,80,.35);
 
 }
+/* ==========================================================
+   PERFORMANCE OPTIMIERUNG
+========================================================== */
+
+img{
+
+    height:auto;
+
+}
+
+
+.hero,
+.hero-card,
+.target-card,
+.service-card,
+.workflow-card,
+.feature-card{
+
+    transform:translateZ(0);
+
+}
