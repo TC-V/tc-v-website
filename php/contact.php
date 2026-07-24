@@ -10,6 +10,8 @@ $name = trim($_POST["name"] ?? "");
 $email = trim($_POST["email"] ?? "");
 $phone = trim($_POST["phone"] ?? "");
 $message = trim($_POST["message"] ?? "");
+$subject_form = trim($_POST["subject"] ?? "");
+
 
 
 if (
@@ -27,7 +29,9 @@ if (
 
 $to = "philipp.vierthaler@tc-v.de";
 
-$subject = "Neue Anfrage über tc-v.de";
+$subject = !empty($subject_form)
+    ? "Neue Anfrage: " . $subject_form
+    : "Neue Anfrage über tc-v.de";
 
 
 $email_content =
