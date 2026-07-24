@@ -254,3 +254,27 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+const params = new URLSearchParams(window.location.search);
+
+const formMessage = document.getElementById("form-message");
+
+if (params.get("status") === "success" && formMessage) {
+
+    formMessage.innerHTML = `
+        <div class="alert alert-success">
+            Vielen Dank für Ihre Anfrage. Wir melden uns schnellstmöglich bei Ihnen.
+        </div>
+    `;
+
+}
+
+
+if (params.get("status") === "error" && formMessage) {
+
+    formMessage.innerHTML = `
+        <div class="alert alert-danger">
+            Bitte überprüfen Sie Ihre Eingaben und versuchen Sie es erneut.
+        </div>
+    `;
+
+}
