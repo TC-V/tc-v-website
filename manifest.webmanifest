@@ -1,22 +1,21 @@
 {
   "name": "Technical Consulting Vierthaler",
   "short_name": "TC-V",
-  "description": "Technische Lösungen für Unternehmen und Privatkunden.",
-  "lang": "de-DE",
+  "description": "Technische Beratung für RF-Technologie, Netzwerke, Glasfaser und Testlabore.",
   "start_url": "/",
-  "scope": "/",
   "display": "standalone",
+  "background_color": "#0b1628",
+  "theme_color": "#0b1628",
   "orientation": "portrait",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
+
   "icons": [
     {
-      "src": "/images/android-chrome-192x192.png",
+      "src": "images/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/images/android-chrome-512x512.png",
+      "src": "images/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
