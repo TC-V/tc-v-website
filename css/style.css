@@ -1700,7 +1700,46 @@ a:focus{
         font-size:2rem;
 
     }
+.hero{
 
+    padding-top:120px;
+
+}
+
+
+.hero p{
+
+    font-size:1rem;
+
+}
+
+
+.hero-buttons{
+
+    gap:14px;
+
+}
+
+
+.hero-buttons .btn{
+
+    width:100%;
+
+}
+
+
+.hero-card{
+
+    padding:24px;
+
+}
+
+
+.hero-card-header span{
+
+    font-size:1.6rem;
+
+}
     .workflow-grid{
 
         grid-template-columns:1fr;
