@@ -1,107 +1,292 @@
-// ==========================================
-// Technical Consulting Vierthaler
-// script.js v2.0
-// ==========================================
+/*
+==========================================================
+TC-V WEBSITE
+Technical Consulting Vierthaler
+script.js
+==========================================================
+*/
 
-// Smooth Scrolling
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-  link.addEventListener("click", e => {
-    const target = document.querySelector(link.getAttribute("href"));
+document.addEventListener("DOMContentLoaded", () => {
 
-    if (!target) return;
+    const navbar = document.querySelector(".navbar");
+    const progressBar = document.getElementById("progress-bar");
 
-    e.preventDefault();
+    /* ==========================================
+       NAVBAR + PROGRESS BAR
+    ========================================== */
 
-    target.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
-  });
-});
+    function updateScrollEffects(){
 
-// Navigation beim Scrollen
-const navbar = document.querySelector(".navbar");
+        const scrollTop = window.scrollY;
 
-function updateNavbar() {
+        if(scrollTop > 40){
 
-  if (!navbar) return;
+            navbar.classList.add("scrolled");
 
-  const container = navbar.querySelector(".container");
+        }else{
 
-  if (window.scrollY > 40) {
+            navbar.classList.remove("scrolled");
 
-    navbar.style.top = "10px";
-
-    if (container) {
-      container.style.background = "rgba(8,12,20,.80)";
-      container.style.boxShadow = "0 20px 45px rgba(0,0,0,.45)";
-    }
-
-  } else {
-
-    navbar.style.top = "18px";
-
-    if (container) {
-      container.style.background = "rgba(8,12,20,.55)";
-      container.style.boxShadow = "";
-    }
-  }
-}
-
-window.addEventListener("scroll", updateNavbar);
-updateNavbar();
-
-
-// Fade-In Animation
-const observer = new IntersectionObserver((entries) => {
-
-  entries.forEach(entry => {
-
-    if (!entry.isIntersecting) return;
-
-    entry.target.animate(
-      [
-        {
-          opacity: 0,
-          transform: "translateY(35px)"
-        },
-        {
-          opacity: 1,
-          transform: "translateY(0)"
         }
-      ],
-      {
-        duration: 650,
-        easing: "ease-out",
-        fill: "forwards"
-      }
+
+        const documentHeight =
+            document.documentElement.scrollHeight -
+            document.documentElement.clientHeight;
+
+        const progress =
+            (scrollTop / documentHeight) * 100;
+
+        progressBar.style.width = progress + "%";
+
+    }
+
+    updateScrollEffects();
+
+    window.addEventListener("scroll", updateScrollEffects);
+
+    /* ==========================================
+       REVEAL ANIMATION
+    ========================================== */
+
+    const reveals = document.querySelectorAll(
+        ".service-card,.feature-card,.target-card,.trust-card,.workflow-step,.about-card,.contact-form,.contact-item"
     );
 
-    observer.unobserve(entry.target);
+    const revealObserver = new IntersectionObserver(
 
-  });
+        (entries)=>{
 
-},{
-  threshold:0.15
+            entries.forEach(entry=>{
+
+                if(entry.isIntersecting){
+
+                    entry.target.classList.add("reveal");
+                    entry.target.classList.add("active");
+
+                }
+
+            });
+
+        },
+
+        {
+
+            threshold:.15
+
+        }
+
+    );
+
+    reveals.forEach(card=>{
+
+        card.classList.add("reveal");
+
+        revealObserver.observe(card);
+
+    });
+
+    /* ==========================================
+       SMOOTH SCROLL
+    ========================================== */
+
+    document
+        .querySelectorAll('a[href^="#"]')
+        .forEach(anchor=>{
+
+            anchor.addEventListener("click",e=>{
+
+                const target=document.querySelector(
+                    anchor.getAttribute("href")
+                );
+
+                if(!target) return;
+
+                e.preventDefault();
+
+                target.scrollIntoView({
+
+                    behavior:"smooth",
+
+                    block:"start"
+
+                });
+
+            });
+
+        });
+
+});
+/* ==========================================
+   ACTIVE NAVIGATION
+========================================== */
+
+const sections = document.querySelectorAll("section[id]");
+const navLinks = document.querySelectorAll(".navbar .nav-link");
+
+function updateActiveNavigation(){
+
+    let current = "";
+
+    sections.forEach(section => {
+
+        const sectionTop = section.offsetTop - 120;
+        const sectionHeight = section.offsetHeight;
+
+        if(window.scrollY >= sectionTop){
+
+            current = section.getAttribute("id");
+
+        }
+
+    });
+
+    navLinks.forEach(link => {
+
+        link.classList.remove("active");
+
+        const href = link.getAttribute("href");
+
+        if(href === "#" + current){
+
+            link.classList.add("active");
+
+        }
+
+    });
+
+}
+
+window.addEventListener("scroll", updateActiveNavigation);
+updateActiveNavigation();
+
+/* ==========================================
+   HERO PARALLAX
+========================================== */
+
+const hero = document.querySelector(".hero");
+
+window.addEventListener("scroll", () => {
+
+    if(!hero) return;
+
+    const offset = window.scrollY * 0.18;
+
+    hero.style.transform =
+        `translateY(${offset}px)`;
+
 });
 
-document.querySelectorAll(".service-card, section").forEach(el=>{
-  observer.observe(el);
+/* ==========================================
+   BACKGROUND GLOW PARALLAX
+========================================== */
+
+const glowLeft = document.querySelector(".glow-left");
+const glowRight = document.querySelector(".glow-right");
+
+window.addEventListener("mousemove",(e)=>{
+
+    const x =
+        (e.clientX/window.innerWidth)-0.5;
+
+    const y =
+        (e.clientY/window.innerHeight)-0.5;
+
+    if(glowLeft){
+
+        glowLeft.style.transform =
+            `translate(${x*35}px,${y*35}px)`;
+
+    }
+
+    if(glowRight){
+
+        glowRight.style.transform =
+            `translate(${-x*35}px,${-y*35}px)`;
+
+    }
+
 });
 
+/* ==========================================
+   HERO CARD TILT
+========================================== */
 
-// Hero Hintergrund leicht bewegen
-const hero = document.querySelector(".hero-bg");
+const heroCard=document.querySelector(".hero-card");
 
-window.addEventListener("mousemove", e=>{
+if(heroCard){
 
-  if(!hero) return;
+heroCard.addEventListener("mousemove",(e)=>{
 
-  const x=(e.clientX/window.innerWidth-0.5)*20;
-  const y=(e.clientY/window.innerHeight-0.5)*20;
+const rect=heroCard.getBoundingClientRect();
 
-  hero.style.transform=`translate(${x}px, ${y}px)`;
+const x=e.clientX-rect.left;
+
+const y=e.clientY-rect.top;
+
+const rotateY=(x-rect.width/2)/18;
+
+const rotateX=-(y-rect.height/2)/18;
+
+heroCard.style.transform=
+
+`perspective(900px)
+ rotateX(${rotateX}deg)
+ rotateY(${rotateY}deg)
+ translateY(-6px)`;
 
 });
 
-console.log("TC-V Website Version 2.0 geladen");
+heroCard.addEventListener("mouseleave",()=>{
+
+heroCard.style.transform="";
+
+});
+
+}
+
+/* ==========================================
+   BUTTON HOVER EFFECT
+========================================== */
+
+document.querySelectorAll(".btn").forEach(button=>{
+
+button.addEventListener("mouseenter",()=>{
+
+button.style.transition=".3s";
+
+button.style.transform="translateY(-4px)";
+
+});
+
+button.addEventListener("mouseleave",()=>{
+
+button.style.transform="";
+
+});
+
+});
+
+/* ==========================================
+   PERFORMANCE
+========================================== */
+
+let resizeTimer;
+
+window.addEventListener("resize",()=>{
+
+clearTimeout(resizeTimer);
+
+resizeTimer=setTimeout(()=>{
+
+updateScrollEffects();
+updateActiveNavigation();
+
+},150);
+
+});
+
+/* ==========================================
+   END
+========================================== */
+
+});
