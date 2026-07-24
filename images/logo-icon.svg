@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+<title>TC-V Icon</title>
+
+<rect width="300" height="300" rx="60" fill="#0b1628"/>
+
+<g fill="#ffffff">
+<path d="M45 70h110v35H115v95H80v-95H45z"/>
+<path d="M165 70h90v35h-55v95h-35z"/>
+</g>
+
+<path d="M165 200h90"
+      stroke="#2b7cff"
+      stroke-width="8"
+      stroke-linecap="round"/>
+
+</svg>
