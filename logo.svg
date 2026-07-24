@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320">
+  <defs>
+    <linearGradient id="silver" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="55%" stop-color="#d9d9d9"/>
+      <stop offset="100%" stop-color="#9ca3af"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="320" fill="none"/>
+
+  <!-- T -->
+  <path d="M120 55 H410 L390 85 H255 V235 H205 V85 H120 Z" fill="url(#silver)"/>
+
+  <!-- C -->
+  <path d="M470 95
+           C470 55 505 35 565 35
+           H690
+           L670 70
+           H570
+           C535 70 520 88 520 118
+           C520 148 535 166 570 166
+           H670
+           L690 200
+           H565
+           C505 200 470 180 470 140 Z"
+        fill="url(#silver)"/>
+
+  <!-- V -->
+  <path d="M690 35 L750 35 L860 180 L970 35 L1030 35 L870 235 L820 235 Z"
+        fill="url(#silver)"/>
+
+  <text x="600" y="280"
+        text-anchor="middle"
+        font-family="Inter, Arial, sans-serif"
+        font-size="36"
+        letter-spacing="10"
+        fill="#1f2937">TECHNICAL CONSULTING VIERTHALER</text>
+</svg>

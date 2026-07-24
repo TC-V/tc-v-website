@@ -1,0 +1,11 @@
+# robots.txt
+# Technical Consulting Vierthaler
+# https://tc-v.de
+
+User-agent: *
+
+Allow: /
+
+Disallow: /php/
+
+Sitemap: https://tc-v.de/sitemap.xml
